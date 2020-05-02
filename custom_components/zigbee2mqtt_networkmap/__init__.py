@@ -44,13 +44,13 @@ async def async_setup(hass, config):
     webhook_trigger_update_id = hass.components.webhook.async_generate_id()
     hass.components.webhook.async_register(
         DOMAIN, 'zigbee2mqtt_networkmap-webhook_trigger_update', webhook_trigger_update_id, handle_webhook_trigger_update)
-    webhook_trigger_update_url = hass.components.webhook.async_generate_url(webhook_trigger_update_id)
+    webhook_trigger_update_url = hass.components.webhook.async_generate_path(webhook_trigger_update_id)
 
     # Register the Webhook for trigger update
     webhook_check_update_id = hass.components.webhook.async_generate_id()
     hass.components.webhook.async_register(
         DOMAIN, 'zigbee2mqtt_networkmap-webhook_check_update', webhook_check_update_id, handle_webhook_check_update)
-    webhook_check_update_url = hass.components.webhook.async_generate_url(webhook_check_update_id)
+    webhook_check_update_url = hass.components.webhook.async_generate_path(webhook_check_update_id)
 
     f = open(hass.config.path('www', 'community', 'zigbee2mqtt_networkmap', 'settings.js'), "w")
     f.write("var webhook_trigger_update_url = '"+webhook_trigger_update_url+"';")
